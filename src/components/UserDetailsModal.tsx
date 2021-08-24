@@ -6,6 +6,7 @@ import Fade from "@material-ui/core/Fade";
 import UserActionTabs from "./UserActionTabs";
 import { Divider, Fab } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
+import AddPost from "components/AddPost";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -40,6 +41,8 @@ type Props = {
 const UserDetailsModal = (props: Props) => {
   const classes = useStyles();
   const [open, setOpen] = useState<boolean>(false);
+  const [addPostFormVisible, setAddPostFormVisible] = useState<boolean>(false);
+  const [activeTabItem, setActiveTabItem] = useState<number>(0);
 
   const handleClose = () => {
     setOpen(false);
@@ -51,6 +54,21 @@ const UserDetailsModal = (props: Props) => {
       setOpen(true);
     }
   }, [props.userId]);
+
+  const setActiveTab = (index: number) => {
+    setActiveTabItem(index);
+  };
+
+  const handleAddClicked = () => {
+    if (activeTabItem === 1) {
+      setAddPostFormVisible(true);
+    }
+  };
+
+  const handleAddPostCancelClick = () => {
+    setAddPostFormVisible(false);
+    setActiveTabItem(0);
+  };
 
   return (
     <Fragment>
@@ -66,12 +84,27 @@ const UserDetailsModal = (props: Props) => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            {props.userName}
-            <Divider className={classes.divider} />
-            <UserActionTabs userId={props.userId} />
-            <Fab color="primary" aria-label="add" className={classes.add}>
-              <Add />
-            </Fab>
+            {`${props.userName} ${addPostFormVisible ? "- Add Post" : ""}`}
+            {!addPostFormVisible && (
+              <Fragment>
+                <Divider className={classes.divider} />
+                <UserActionTabs
+                  userId={props.userId}
+                  activeTab={setActiveTab}
+                />
+                <Fab
+                  color="primary"
+                  aria-label="add"
+                  className={classes.add}
+                  onClick={handleAddClicked}
+                >
+                  <Add />
+                </Fab>
+              </Fragment>
+            )}
+            {addPostFormVisible && (
+              <AddPost onCancelClick={handleAddPostCancelClick} />
+            )}
           </div>
         </Fade>
       </Modal>

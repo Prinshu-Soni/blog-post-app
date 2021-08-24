@@ -35,11 +35,17 @@ const a11yProps = (index: number) => {
   };
 };
 
-const UserActionTabs = ({ userId }: { userId?: number }) => {
+type Props = {
+  userId?: number;
+  activeTab: (id: number) => void;
+};
+
+const UserActionTabs = (props: Props) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (event: any, newValue: number) => {
     setValue(newValue);
+    props.activeTab(newValue);
   };
 
   return (
@@ -49,10 +55,10 @@ const UserActionTabs = ({ userId }: { userId?: number }) => {
         <Tab label="Posts" {...a11yProps(1)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Todo userId={userId} />
+        <Todo userId={props.userId} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Posts userId={userId} />
+        <Posts userId={props.userId} />
       </TabPanel>
     </Box>
   );
