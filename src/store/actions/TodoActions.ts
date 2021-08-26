@@ -8,14 +8,14 @@ import {
 import axios from "axios";
 
 export const GetTodos =
-  (userId: number) => async (dispatch: Dispatch<TodoDispatchTypes>) => {
+  (userId: number, page: number) => async (dispatch: Dispatch<TodoDispatchTypes>) => {
     try {
       dispatch({
         type: TODO_LOADING,
       });
 
       const res = await axios.get(
-        `https://jsonplaceholder.typicode.com/todos?userId=${userId}`
+        `https://jsonplaceholder.typicode.com/todos?userId=${userId}&_page=${page}&_limit=5`
       );
 
       dispatch({

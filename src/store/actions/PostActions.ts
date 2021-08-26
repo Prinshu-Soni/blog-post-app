@@ -9,14 +9,15 @@ import {
 import axios from "axios";
 
 export const GetPosts =
-  (userId: number) => async (dispatch: Dispatch<PostDispatchTypes>) => {
+  (userId: number, page: number) =>
+  async (dispatch: Dispatch<PostDispatchTypes>) => {
     try {
       dispatch({
         type: POST_LOADING,
       });
 
       const res = await axios.get(
-        `https://jsonplaceholder.typicode.com/posts?userId=${userId}`
+        `https://jsonplaceholder.typicode.com/posts?userId=${userId}&_page=${page}&_limit=5`
       );
 
       dispatch({

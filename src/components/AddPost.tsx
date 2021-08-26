@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Grid,
@@ -7,13 +7,12 @@ import {
   makeStyles,
   createStyles,
   Theme,
+  LinearProgress,
 } from "@material-ui/core";
 import { AddNewPost } from "store/actions/PostActions";
 import { Formik, Form, FormikProps } from "formik";
 import * as Yup from "yup";
 import { RootStore } from "store";
-import { useEffect } from "react";
-import { useState } from "react";
 import { Alert } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -101,6 +100,7 @@ const AddPost = (addPostProps: AddPostProps) => {
                 {alert.message}
               </Alert>
             )}
+            {postState.loading && <LinearProgress />}
             <Grid container justifyContent="space-around" direction="row">
               <Grid
                 item
