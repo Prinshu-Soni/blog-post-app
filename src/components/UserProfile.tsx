@@ -1,11 +1,11 @@
-import React from "react";
-import Typography from "@material-ui/core/Typography";
-import { Grid, makeStyles, Paper } from "@material-ui/core";
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import { Grid, makeStyles, Paper } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   card: {
     padding: theme.spacing(2),
-    cursor: "pointer",
+    cursor: 'pointer',
   },
 }));
 
@@ -15,10 +15,11 @@ type Props = {
   email: string;
   phone: string;
   website: string;
+  childern?: React.ReactNode;
   onClick: (id: number, name: string) => void;
 };
 
-const UserProfile = (props: Props) => {
+const UserProfile: React.FC<Props> = (props: Props) => {
   const classes = useStyles();
 
   return (
