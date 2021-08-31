@@ -12,7 +12,7 @@ import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPost, resetAddPostResponseData } from 'src/state/post/actions';
-import * as Yup from 'yup';
+import { object, string } from 'yup';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -56,9 +56,9 @@ const AddPost: React.FC<AddPostProps> = (addPostProps: AddPostProps) => {
       onSubmit: (values: IAddPostForm, actions) => {
         addNewPost(values, actions.resetForm);
       },
-      validationSchema: Yup.object().shape({
-        title: Yup.string().required('Please enter title'),
-        body: Yup.string().required('Please enter body'),
+      validationSchema: object().shape({
+        title: string().required('Please enter title'),
+        body: string().required('Please enter body'),
       }),
     });
 

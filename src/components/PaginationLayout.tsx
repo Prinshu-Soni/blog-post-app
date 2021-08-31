@@ -1,6 +1,5 @@
 import { LinearProgress } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useInView } from 'react-intersection-observer';
 
 type Props = {
@@ -13,14 +12,8 @@ const PaginationLayout: React.FC<Props> = ({ userId, loadData }) => {
   const [ref, inView] = useInView({
     threshold: 0,
   });
-  const { loading } = useSelector((state: ReduxStore) => ({
-    loading: state.common.todoLoading,
-  }));
 
   const loadPaginatedData = async () => {
-    if (loading) {
-      return;
-    }
     const el = document.querySelector('#scroll-box');
     if (el) {
       const scrollTop = el.scrollTop;

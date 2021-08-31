@@ -5,8 +5,8 @@ export const GET_POST_DATA_SUCCESS = 'post/GET_POST_DATA_SUCCESS';
 export const GET_POST_DATA_FAILURE = 'post/GET_POST_DATA_FAILURE';
 export const ADD_POST_DATA_SUCCESS = 'post/ADD_POST_DATA_SUCCESS';
 export const ADD_POST_DATA_FAILURE = 'post/ADD_POST_DATA_FAILURE';
-export const RESET_POST_DATA = 'todo/RESET_POST_DATA';
-export const RESET_ADD_POST_RESPONSE_DATA = 'todo/RESET_ADD_POST_RESPONSE_DATA';
+export const RESET_POST_DATA = 'post/RESET_POST_DATA';
+export const RESET_ADD_POST_RESPONSE_DATA = 'post/RESET_ADD_POST_RESPONSE_DATA';
 
 export const getPostData = (userId: number, page: number): APIAction => ({
   type: CALL_API,
