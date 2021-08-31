@@ -6,6 +6,7 @@ import {
   ListItem,
   ListItemText,
   makeStyles,
+  Typography,
 } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,9 +19,6 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  post: {
-    cursor: 'pointer',
   },
 }));
 
@@ -51,9 +49,12 @@ const Post: React.FC<Props> = ({ userId }) => {
   const postList =
     localPosts &&
     localPosts.map((post) => (
-      <List key={post.id} className={classes.post}>
+      <List key={post.id}>
         <ListItem>
-          <ListItemText>{post.title}</ListItemText>
+          <ListItemText
+            primary={<Typography color="secondary">{post.title}</Typography>}
+            secondary={<Typography>{post.body}</Typography>}
+          ></ListItemText>
         </ListItem>
         <Divider />
       </List>
