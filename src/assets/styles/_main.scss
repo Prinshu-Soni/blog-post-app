@@ -1,0 +1,14 @@
+body,
+html,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+@mixin align-center() {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+}

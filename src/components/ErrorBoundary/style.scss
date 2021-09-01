@@ -1,0 +1,6 @@
+@import 'src/assets/styles/_main.scss';
+
+.error-boundary {
+  @include align-center();
+  flex-flow: column;
+}
